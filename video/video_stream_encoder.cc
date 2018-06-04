@@ -41,7 +41,7 @@ const int kMinFramerateFps = 2;
 const int kMaxFramerateFps = 120;
 
 // Time to keep a single cached pending frame in paused state.
-const int64_t kPendingFrameTimeoutMs = 1000;
+const int64_t kPendingFrameTimeoutMs = 10000;
 
 // The maximum number of frames to drop at beginning of stream
 // to try and achieve desired bitrate.
@@ -72,18 +72,12 @@ int MaxFps(int pixels) {
 
 bool IsResolutionScalingEnabled(
     VideoSendStream::DegradationPreference degradation_preference) {
-  return degradation_preference ==
-             VideoSendStream::DegradationPreference::kMaintainFramerate ||
-         degradation_preference ==
-             VideoSendStream::DegradationPreference::kBalanced;
+  return false;
 }
 
 bool IsFramerateScalingEnabled(
     VideoSendStream::DegradationPreference degradation_preference) {
-  return degradation_preference ==
-             VideoSendStream::DegradationPreference::kMaintainResolution ||
-         degradation_preference ==
-             VideoSendStream::DegradationPreference::kBalanced;
+	return false;
 }
 
 // TODO(pbos): Lower these thresholds (to closer to 100%) when we handle
